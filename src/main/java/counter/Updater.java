@@ -1,6 +1,7 @@
 package counter;
 
 import api.ApiObject;
+import locals.Themes;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.jsoup.select.Elements;
@@ -142,6 +143,13 @@ public class Updater extends Thread {
 				// EqualMove
 				setColor(window.equalMoveField, floor(apiObject.getEqualMove(), 10), lightGreen);
 
+				// Delta calc
+				// Month
+				setColor( window.monthDeltaField, floor( apiObject.getOptionsMonth().getTotalDelta(), 10 ), Themes.GREEN );
+				// Week
+				setColor( window.weekDeltaField, floor( apiObject.getOptionsWeek().getTotalDelta(), 10 ), Themes.GREEN );
+				// Sum
+				setColor( window.deltaSumField, floor( apiObject.getOptionsMonth().getTotalDelta() + apiObject.getOptionsWeek().getTotalDelta(), 10 ), Themes.GREEN );
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

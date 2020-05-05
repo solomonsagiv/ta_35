@@ -28,15 +28,15 @@ public class DbUpdater extends Thread {
 			try {
 				sleep(sleep);
 
-//				apiObject.getHbHandler().appendLineData();
-//
-//				// Update status data
-//				apiObject.getHbHandler().getStatusHandler().updateDataToHB();
-//
-//				// Update Lists
-//				if (sleepCount % 30000 == 0) {
-//					apiObject.getHbHandler().getArraysHandler().updateDataToHB();
-//				}
+				apiObject.getHbHandler().appendLineData();
+
+				// Update status data
+				apiObject.getHbHandler().getStatusHandler().updateDataToHB();
+
+				// Update Lists
+				if (sleepCount % 30000 == 0) {
+					apiObject.getHbHandler().getArraysHandler().updateDataToHB();
+				}
 				
 				// Sleep
 				sleepCount += sleep;

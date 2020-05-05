@@ -11,6 +11,7 @@ import dataBase.DbUpdater;
 import dataBase.HB;
 import dataBase.HBsession;
 import equalMove.EqualMoveCalculator;
+import locals.Themes;
 import logic.Logic;
 import options.Option;
 import options.OptionsDataCalculator;
@@ -70,12 +71,15 @@ public class WindowTA35 {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel ratioPanel;
-	private JPanel panel_4;
+	private JPanel bottomPanel;
 	public JTextField monthStartExpField;
 	public JTable table;
 	public JTable optionsCalcTable;
 	public static JTextArea log;
 	public JButton restBtn;
+	public JTextField monthDeltaField;
+	public JTextField weekDeltaField;
+	public JTextField deltaSumField;
 
 	public int updater_id = 0;
 
@@ -155,11 +159,11 @@ public class WindowTA35 {
 
 	private void loadOptionsDataFromDB() {
 		// Get the table
-		ArrayList<OptionsDataTable> table = (ArrayList<OptionsDataTable>) HB.getTable(OptionsDataTable.class);
+		ArrayList< OptionsDataTable > table = (ArrayList<OptionsDataTable>) HB.getTable(OptionsDataTable.class);
 
 		if (table.size() > 0) {
 			// For each option
-			for (Option option : apiObject.getOptionsMonth().getOptionsList()) {
+			for ( Option option : apiObject.getOptionsMonth().getOptionsList()) {
 				// For each table line
 				for (OptionsDataTable optionTable : table) {
 					if (option.getName().equals(optionTable.getOption())) {
@@ -198,7 +202,7 @@ public class WindowTA35 {
 		frame.getContentPane().setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.setTitle("TA35");
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(-6, 0, 734, 209);
+		frame.setBounds(-6, 0, 810, 209);
 		frame.getContentPane().setLayout(null);
 		frame.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage("C:\\Users\\user\\Desktop\\884466c0-505d-464a-bc9e-b2265d91ea38.png"));
@@ -333,7 +337,7 @@ public class WindowTA35 {
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
-		JLabel label_12 = new JLabel("דלתא");
+		JLabel label_12 = new JLabel("יחס");
 		label_12.setBounds(0, 0, 62, 25);
 		panel_1.add(label_12);
 		label_12.setHorizontalAlignment(SwingConstants.CENTER);
@@ -399,16 +403,15 @@ public class WindowTA35 {
 		futureRatioField.setFont(new Font("Arial", Font.PLAIN, 15));
 		futureRatioField.setColumns(10);
 
-		panel_4 = new JPanel();
-		panel_4.setBackground(new Color(0, 51, 102));
-		panel_4.setBounds(0, 129, 730, 38);
-		frame.getContentPane().add(panel_4);
-		panel_4.setLayout(null);
-
+		bottomPanel = new JPanel();
+		bottomPanel.setBackground(new Color(0, 51, 102));
+		bottomPanel.setBounds(0, 129, 810, 38);
+		frame.getContentPane().add( bottomPanel );
+		bottomPanel.setLayout(null);
 
 		start = new JButton("Start");
 		start.setBounds(10, 7, 72, 23);
-		panel_4.add(start);
+		bottomPanel.add(start);
 		start.setForeground(new Color(0, 0, 51));
 		start.setBackground(new Color(211, 211, 211));
 		start.addActionListener(new ActionListener() {
@@ -422,7 +425,7 @@ public class WindowTA35 {
 
 		export = new JButton("Export");
 		export.setBounds(128, 7, 78, 23);
-		panel_4.add(export);
+		bottomPanel.add(export);
 		export.setForeground(new Color(0, 0, 51));
 		export.setBackground(new Color(211, 211, 211));
 		export.setFont(new Font("Arial", Font.BOLD, 12));
@@ -487,7 +490,7 @@ public class WindowTA35 {
 		options.setFont(new Font("Arial", Font.BOLD, 12));
 		options.setBackground(new Color(211, 211, 211));
 		options.setBounds(299, 7, 78, 23);
-		panel_4.add(options);
+		bottomPanel.add(options);
 
 		JButton chart = new JButton("Chart");
 		chart.addActionListener(new ActionListener() {
@@ -502,7 +505,7 @@ public class WindowTA35 {
 		chart.setFont(new Font("Arial", Font.BOLD, 12));
 		chart.setBackground(new Color(211, 211, 211));
 		chart.setBounds(215, 7, 78, 23);
-		panel_4.add(chart);
+		bottomPanel.add(chart);
 
 		restBtn = new JButton("Reset status");
 		restBtn.addActionListener(new ActionListener() {
@@ -517,7 +520,7 @@ public class WindowTA35 {
 		restBtn.setFont(new Font("Arial", Font.BOLD, 12));
 		restBtn.setBackground(new Color(211, 211, 211));
 		restBtn.setBounds(387, 7, 123, 23);
-		panel_4.add(restBtn);
+		bottomPanel.add(restBtn);
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
@@ -562,11 +565,11 @@ public class WindowTA35 {
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Arial", Font.BOLD, 15));
 
-		JPanel panel_10 = new JPanel();
-		panel_10.setLayout(null);
-		panel_10.setBackground(new Color(176, 196, 222));
-		panel_10.setBounds(107, 26, 55, 102);
-		frame.getContentPane().add(panel_10);
+		JPanel basketsPanel = new JPanel();
+		basketsPanel.setLayout(null);
+		basketsPanel.setBackground(new Color(176, 196, 222));
+		basketsPanel.setBounds(107, 26, 55, 102);
+		frame.getContentPane().add(basketsPanel);
 
 		pesimiBasketField = new JTextField();
 		pesimiBasketField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -574,7 +577,7 @@ public class WindowTA35 {
 		pesimiBasketField.setFont(new Font("Arial", Font.PLAIN, 15));
 		pesimiBasketField.setColumns(10);
 		pesimiBasketField.setBounds(5, 35, 45, 25);
-		panel_10.add(pesimiBasketField);
+		basketsPanel.add(pesimiBasketField);
 
 		optimiBasketField = new JTextField();
 		optimiBasketField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -582,7 +585,7 @@ public class WindowTA35 {
 		optimiBasketField.setFont(new Font("Arial", Font.PLAIN, 15));
 		optimiBasketField.setColumns(10);
 		optimiBasketField.setBounds(5, 5, 45, 25);
-		panel_10.add(optimiBasketField);
+		basketsPanel.add(optimiBasketField);
 
 		basketsSumField = new JTextField();
 		basketsSumField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -590,7 +593,7 @@ public class WindowTA35 {
 		basketsSumField.setFont(new Font("Arial", Font.PLAIN, 15));
 		basketsSumField.setColumns(10);
 		basketsSumField.setBounds(5, 70, 45, 25);
-		panel_10.add(basketsSumField);
+		basketsPanel.add(basketsSumField);
 
 		JPanel panel_11 = new JPanel();
 		panel_11.setLayout(null);
@@ -714,20 +717,45 @@ public class WindowTA35 {
 		label_4.setBounds(0, 0, 76, 25);
 		bidAskCounterHeaderPanel.add(label_4);
 
-
 		JPanel deltaHeaderPanel = new JPanel();
-		deltaHeaderPanel.setBounds( bidAskCounterHeaderPanel.getX() + bidAskCounterHeaderPanel.getWidth() + 1, bidAskCounterHeaderPanel.getY(), bidAskCounterHeaderPanel.getWidth(), bidAskCounterHeaderPanel.getY() );
-		deltaHeaderPanel.setBackground( bidAskCounterHeaderPanel.getBackground() );
+		deltaHeaderPanel.setLayout( null );
+		deltaHeaderPanel.setBounds( 719, 0, 80, 25 );
+		deltaHeaderPanel.setBackground( Themes.BLUE );
 
-		JLabel deltaLbl = new JLabel("Delta");
+		JLabel deltaLbl = new JLabel("דלתא");
 		deltaLbl.setBounds( 0, 0, deltaHeaderPanel.getWidth(), deltaHeaderPanel.getHeight() );
+		deltaLbl.setHorizontalAlignment( JLabel.CENTER );
 		deltaLbl.setForeground( Color.WHITE );
 		deltaHeaderPanel.add( deltaLbl );
 		frame.getContentPane().add( deltaHeaderPanel );
 
+		// Delta panel
 		JPanel deltaPanel = new JPanel();
-		deltaPanel.setBounds( deltaHeaderPanel.getX(), deltaHeaderPanel.getY() + deltaHeaderPanel.getHeight() + 1, deltaHeaderPanel.getWidth(), ratioPanel.getHeight() );
+		deltaPanel.setBackground( basketsPanel.getBackground() );
+		deltaPanel.setLayout( null );
+		deltaPanel.setBounds( deltaHeaderPanel.getX(), deltaHeaderPanel.getY() + deltaHeaderPanel.getHeight() + 1, 80, 105 );
 		frame.getContentPane().add( deltaPanel );
+
+		// Month delta
+		monthDeltaField = new JTextField();
+		monthDeltaField.setBounds( 5, 5, 65, 25 );
+		monthDeltaField.setHorizontalAlignment( JTextField.CENTER );
+		monthDeltaField.setFont(new Font("Arial", Font.BOLD, 15));
+		deltaPanel.add( monthDeltaField );
+
+		// Week delta
+		weekDeltaField = new JTextField();
+		weekDeltaField.setBounds( 5, 35, 65, 25 );
+		weekDeltaField.setHorizontalAlignment( JTextField.CENTER );
+		weekDeltaField.setFont(new Font("Arial", Font.BOLD, 15));
+		deltaPanel.add( weekDeltaField );
+
+		// Delta sum
+		deltaSumField = new JTextField();
+		deltaSumField.setBounds( 5, 66, 65, 25 );
+		deltaSumField.setHorizontalAlignment( JTextField.CENTER );
+		deltaSumField.setFont(new Font("Arial", Font.BOLD, 15));
+		deltaPanel.add( deltaSumField );
 
 		index = new JTextField();
 		index.setBounds(5, 5, 65, 25);
