@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="src:main:webapp:WEB-INF:lib:hibernate.cfg.xml/Hibernate" uuid="45282b2f-5ca9-461d-8a92-4891cc7669b0">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/user/IdeaProjects/ta_35/src/main/webapp/WEB-INF/lib/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ta35</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hibernateRds.cfg.xml/Hibernate" uuid="85582c12-c1ce-482f-9e0a-ca6f94728451">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/user/IdeaProjects/ta_35/src/main/resources/hibernateRds.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://sagivwork.ca16ljkfxgo3.us-east-2.rds.amazonaws.com:3306/ta35</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="0add4b04-b7db-40cf-82a4-b018cbae10a2">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/user/IdeaProjects/ta_35/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ta35</jdbc-url>
+    </data-source>
+  </component>
+</project>
